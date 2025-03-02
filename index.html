@@ -1,0 +1,78 @@
+<head>
+    <title>die</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+
+<body>
+    <h1>the great divide</h1>
+    <h2></h2>
+
+    <div class="content">
+        <ol type="i">
+            <li>words
+                <ol type="a">
+                    <li><a href="/association">association</a></li>
+                </ol>
+            </li>
+            <li>sounds
+                <ol type="a">
+                    <li><a href="https://soundcloud.com/shape">shape</a></li>
+                    <li><a href="https://soundcloud.com/dim">dim</a></li>
+                </ol>
+            </li>
+            <li>imagery
+                <ol type="a">
+                    <li>desolate</li>
+                </ol>
+            </li>
+            <li>realm
+                <ol type="a">
+                    <li><a href="/su">su</a></li>
+                    <li><a href="/shatters-solver">shatters-solver</a></li>
+                    <li><a href="/OsancTools">OsancTools</a></li>
+                </ol>
+            </li>
+            <li>links
+                <ol type="a">
+                    <li><a href="https://wiredcollective.neocities.org/">wired collective</a></li>
+                </ol>
+            </li>
+        </ol>
+
+        <a href="https://github.com/die">
+            <img src="https://avatars.githubusercontent.com/u/48879283?v=4" alt="Sample Image">
+        </a>
+    </div>
+</body>
+
+<script>
+    const conceptions = [
+        "endure the passage of time until the great divide",
+        "move the populace with revenge; a fragile conscience",
+        "the final epitaph reaches towards its prologue no more",
+        "a sin-bound anima clips its wings so nothing remains",
+        "observe the feeble eyes...she has slain her own mind",
+        "i wanted to be certain of your existence, lest my own",
+        "#####################################################"
+    ];
+
+    function hashes(length) {
+        const x = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+        const y = x.length;
+        let z = '';
+        for (let i = 0; i < length; i++) {
+            z += x.charAt(Math.floor(Math.random() * y));
+        }
+        return z;
+    }
+
+    function prophecies() {
+        const s = Math.random() < 0.05 ? conceptions[Math.floor(Math.random() * conceptions.length)] : hashes(54);
+        document.querySelector('h2').textContent = s;
+    }
+
+    setInterval(prophecies, 100);
+</script>

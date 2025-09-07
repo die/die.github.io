@@ -1,3 +1,11 @@
+pre#words {
+    white-space: pre-wrap;
+    word-break: break-word;
+    margin-left: 20vw;
+    margin-right: 20vw;
+    max-width: 60vw;
+}
+
 body {
     display: flex;
     flex-direction: column;
@@ -7,7 +15,7 @@ body {
     margin: 0;
 }
 
-.content {
+.content, p, ul {
     font-family: 'Courier New', Courier, monospace;
     font-size: 11px;
     display: flex;
@@ -50,4 +58,13 @@ h2 {
 h2 {
     text-decoration: line-through;
     margin-bottom: 20px;
+}
+
+embed {
+	width: 50vh;
+}
+
+#toc {
+  list-style-type: none;
+  padding-left: 0;
 }

@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Notebook Entry</title>
+    <link rel="stylesheet" href="../style.css">
+    <script>
+    function getDateParam() {
+        const params = new URLSearchParams(window.location.search);
+        return params.get('date');
+    }
+    async function loadWords() {
+        const date = getDateParam();
+        if (!date) {
+            document.getElementById('words').textContent = 'No date specified.';
+            return;
+        }
+        try {
+            const response = await fetch(`scripts/${date}`);
+            if (!response.ok) throw new Error('File not found');
+            const text = await response.text();
+            document.getElementById('words').textContent = text;
+        } catch (e) {
+            document.getElementById('words').textContent = 'Error loading file.';
+        }
+    }
+    document.addEventListener('DOMContentLoaded', loadWords);
+    </script>
+</head>
+<body>
+    <h1><span id="date"></span></h1>
+    <pre id="words">Loading...</pre>
+    <p id="stats"></p>
+    <a href="thoughts.html"><i>return</i></a>
+    <script>
+    document.getElementById('date').textContent = getDateParam();
+    async function updateStats() {
+        const wordsElem = document.getElementById('words');
+        const statsElem = document.getElementById('stats');
+        let text = wordsElem.textContent;
+        if (text === 'Loading...' || text === 'No date specified.' || text === 'Error loading file.') {
+            setTimeout(updateStats, 100);
+            return;
+        }
+        const wordCount = text.trim().split(/\s+/).filter(Boolean).length;
+        const wordsPerMinute = 200;
+        const minutes = Math.ceil(wordCount / wordsPerMinute);
+        statsElem.textContent = `${wordCount} words #  ${minutes} min`;
+    }
+    updateStats();
+    </script>
+</body>
+</html>

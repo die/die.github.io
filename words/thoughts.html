@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>thoughts</title>
+    <link rel="stylesheet" href="../style.css">
+    <script>
+    document.addEventListener('DOMContentLoaded', async function() {
+        try {
+            const response = await fetch('scripts/index.json');
+            if (!response.ok) throw new Error('Manifest not found');
+            const files = await response.json();
+            const toc = document.getElementById('toc');
+            files.forEach(file => {
+                const li = document.createElement('li');
+                const a = document.createElement('a');
+                a.href = `view.html?date=${file}`;
+                a.textContent = file;
+                li.appendChild(a);
+                toc.appendChild(li);
+            });
+        } catch (e) {
+            document.getElementById('toc').textContent = 'Error loading manifest.';
+        }
+    });
+    </script>
+</head>
+<body>
+    <h1>index</h1>
+    <ul id="toc"></ul>
+    <a href="/"><i>return</i></a>
+</body>
+</html>
